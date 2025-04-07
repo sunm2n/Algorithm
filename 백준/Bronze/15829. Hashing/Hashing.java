@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class Main {
@@ -10,14 +9,13 @@ public class Main {
         String str = sc.next();
         long num;
         long sum = 0;
+        long pow = 1;
+        long M = 1234567891;
 
         for (int i = 0; i < L; i++) {
             num = (str.charAt(i) - 96);
-            for (int j = 0; j < i; j++) {
-                num *= 31;
-                num %= 123456791; // num 의 사이즈가 커져 오버플로우가 되는 것을 방지
-            }
-            sum += num;
+            sum = (sum + (num * pow % M)) % M;
+            pow = (pow * 31) % M;
         }
         System.out.println(sum);
     }
